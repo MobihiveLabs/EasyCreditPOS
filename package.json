@@ -1,0 +1,24 @@
+{
+  "name": "easycreditpos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "test: node ./node_modules/mocha/bin/mocha"
+  },
+  "author": "Ameay",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/mocha-framework": "^8.10.4",
+    "mocha": "^10.2.0",
+    "webdriverio": "^8.10.4"
+  },
+  "dependencies": {
+    "appium-uiautomator2-driver": "^2.24.1",
+    "assert": "^2.0.0",
+    "chai": "^4.3.7",
+    "desired-capabilities": "^0.1.0",
+    "nodemon": "^2.0.22",
+    "wd": "^1.14.0"
+  }
+}
