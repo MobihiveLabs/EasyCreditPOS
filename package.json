@@ -9,6 +9,7 @@
   "author": "Ameay",
   "license": "ISC",
   "devDependencies": {
+    "@wdio/local-runner": "^8.10.5",
     "@wdio/mocha-framework": "^8.10.4",
     "mocha": "^10.2.0",
     "webdriverio": "^8.10.4"
