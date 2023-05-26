@@ -15,83 +15,82 @@ async function runTest() {
     },
   })
 
+  async function refreshPage() {
+    await driver.touchAction([
+      { action: 'press', x: 345, y: 756 },
+      { action: 'moveTo', x: 342, y: 1322 },
+      'release'
+    ]);
+  }
+
   function generateRandomNumber() {
     let randomNumber = Math.floor(Math.random() * 9000000) + 1000000;
     return randomNumber.toString().substring(1, 11);
   }
 
-  let e20 = await driver.$("//android.widget.FrameLayout[@content-desc=\"Orders\"]/android.widget.FrameLayout/android.widget.ImageView");
-  await e20.click();
-  
-  let e21 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_select_device");
-  await e21.click();
-  
-  let e23 = await driver.$('[text="Samsung Galaxy A12(4/64gb)"]');
-  await e23.waitForDisplayed({ timeout: 10000 });
-  await e23.click();
-  //Pause because Bug "Order Placed sucessfully"
-  await driver.pause(4000)
- 
-  let e24 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_proceed");
-  await e24.click();
-  await driver.pause(4000);
-  // let e25= await driver.$("id=com.easysmartphonecredit.pos:id/id_button_next");
-  // await e25.waitForDisplayed();
-  // await e25.click();
- 
-  let e26 = await driver.$('[text="PROCEED NEXT"]');
-  await e26.waitForDisplayed();
-  await e26.click();
-  
-  let e027 = await driver.$('[text="Make Upfront"]');
-  await e027.waitForDisplayed();
-  await e027.click();
-  
-  let e27 = await driver.$("id=com.easysmartphonecredit.pos:id/id_image_receipt");
-  await e27.waitForDisplayed();
-  await e27.click();
-  
-  let e28 = await driver.$("~Tap shutter to take picture");
-  await e28.click();
+  async function paymentReceipt() {
+    let el15 = await driver.$("com.easysmartphonecredit.pos:id/id_image_receipt");
+    await el15.click();
+    
+    let el16 = await driver.$("~Tap shutter to take picture");
+    await el16.click();
+    await driver.touchAction({ actions: 'tap', x: 544, y: 1352 })
+    
+    let el17 = await driver.$("com.easysmartphonecredit.pos:id/crop_image_menu_crop");
+    await el17.click();
+    
+    let el18 = await driver.$("com.easysmartphonecredit.pos:id/id_edit_transactionId");
+    await el18.setValue(generateRandomNumber());
+    
+    let el19 = await driver.$("com.easysmartphonecredit.pos:id/id_button_submit");
+    await el19.click(); 
 
-  await driver.pause(4000);
-  await driver.touchAction([
-    { action: 'press', x: 548, y: 1358 },
-    'release'
-  ]);
+  }
 
-  let e29 = await driver.$("id=com.easysmartphonecredit.pos:id/crop_image_menu_crop");
-  await e29.waitForDisplayed();
-  e29.click();
-  
-  let e30 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_transactionId");
-  await e30.waitForDisplayed({timeout : 20000});
-  await e30.setValue("payment");
- 
-  let e31 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_submit");
-  await e31.click();
+  let el1 = await driver.$("id=com.easysmartphonecredit.pos:id/snackbar_action");
+  await el1.click();
 
-  
-  let e32 = await driver.$("id=com.easysmartphonecredit.pos:id/id_spinner_model_name");
-  await e32.waitForDisplayed();
-  e32.click();
+  let el2 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_checkLock");
+  await el2.click();
+  let el3 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_lock");
+  await el3.click();
+  let el4 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_unlock");
+  await el4.click();
+  let e015 = await driver.$("id=com.easysmartphonecredit.pos:id/snackbar_action");
+  await e015.click();
 
-  let e33 = await driver.$('[text = "SM-A125U"]');
-  await e33.waitForDisplayed();
-  e33.click();
+  let el5 = await driver.$('[text="Active Phone"]');
+  await el5.click();
+  let el6 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_1");
+  await el6.click();
+  let el7 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_2");
+  await el7.click();
+  let el8 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_3");
+  await el8.click();
+  let el9 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_4");
+  await el9.click();
+  let el10 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_done_all");
+  await el10.click();
+  await e015.click();
+  await refreshPage();
 
-  let e34 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_serial_no");
-  await e34.setValue(generateRandomNumber());
-  
-  let e35 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_imei1");
-  await e35.setValue(generateRandomNumber());
-  
-  let e36 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_imei2");
-  await e36.setValue(generateRandomNumber());
-  
-  let e37 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_enrolled");
-  await e37.click();
-  
+  let el11 = await driver.$("id=com.easysmartphonecredit.pos:id/id_image_back_press");
+  await el11.click();
+
+
+
+
+
+  await e015.click();
+  let el13 = await driver.$("~Payment");
+  await el13.click();
+  let el14 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_make_payment");
+  await el14.click();
+
+  await paymentReceipt();
+
+
+
 
 
 

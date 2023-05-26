@@ -41,26 +41,7 @@ async function runTest() {
     randomEmail += '@example.com';
     return randomEmail;
   }
-  //Get Element By Text
-  function getElementByText(text) {
-    let ele = driver.$('*').find((element) => element.getText().includes(text));
-    return ele;
-    //return driver.$(`//*[contains(text(), "${text}")]`);
-  }
-  //Wait for value
-  async function waitForOtpAndClick(clickElement, otpInputSelector) {
-    await driver.waitUntil(async () => {
-      const otpInput = await driver.$(otpInputSelector);
-      const otpValue = await otpInput.getValue();
-      return otpValue.length > 0;
-    }, {
-      timeout: 30000, // Maximum timeout in milliseconds
-      timeoutMsg: 'Timed out waiting for OTP input',
-      interval: 500 // Interval between condition checks in milliseconds
-    });
-
-    await clickElement.click();
-  }
+  
 
   //LoginPage
   let el3 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_agent_id");
@@ -89,14 +70,14 @@ async function runTest() {
   await el10.click();
 
   let el11 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_first_name");
-  await el11.setValue("Ameay");
+  await el11.setValue("Test");
   await driver.pause(500);
 
   let el12 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_middle_name");
-  await el12.setValue("M");
+  await el12.setValue("Test");
 
   let el13 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_last_name");
-  await el13.setValue("Pande");
+  await el13.setValue("Test");
 
   let el14 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_submit");
   await el14.click();
@@ -232,7 +213,7 @@ async function runTest() {
   // await e02.click();
 
   let e03 = await driver.$("~Tap shutter to take picture");
-  await e03.waitForDisplayed(5000);
+  await e03.waitForDisplayed();
   await e03.click();
 
   await driver.pause(4000);
@@ -339,7 +320,7 @@ async function runTest() {
   await driver.pause(2000);
 
 
-  
+
   // Order Place
   let e20 = await driver.$("id=com.easysmartphonecredit.pos:id/id_menu_fragment_doc_order");
   await e20.click();
@@ -361,11 +342,11 @@ async function runTest() {
   // await e25.click();
 
   let e26 = await driver.$('[text="PROCEED NEXT"]');
-  await e26.waitForDisplayed();
+  await e26.waitForDisplayed({timeout : 10000});
   await e26.click();
 
   let e027 = await driver.$('[text="Make Upfront"]');
-  await e027.waitForDisplayed();
+  await e027.waitForDisplayed({timeout : 10000});
   await e027.click();
 
   let e27 = await driver.$("id=com.easysmartphonecredit.pos:id/id_image_receipt");
@@ -387,14 +368,14 @@ async function runTest() {
 
   let e30 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_transactionId");
   await e30.waitForDisplayed({ timeout: 20000 });
-  await e30.setValue("payment");
+  await e30.setValue(generateRandomNumber());
 
   let e31 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_submit");
   await e31.click();
 
   // Enroll Device
   let e32 = await driver.$("id=com.easysmartphonecredit.pos:id/id_spinner_model_name");
-  await e32.waitForDisplayed();
+  await e32.waitForDisplayed({timeout : 10000});
   e32.click();
 
   let e33 = await driver.$('[text = "SM-A125U"]');
@@ -412,6 +393,43 @@ async function runTest() {
 
   let e37 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_enrolled");
   await e37.click();
+
+  // let e38 = await driver.$("id=com.easysmartphonecredit.pos:id/snackbar_action");
+  // await e38.click();
+
+  let e39 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_checkLock");
+  await e39.click();
+  
+  let e40 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_lock");
+  await e40.click();
+  
+  let e41 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_unlock");
+  await e41.click();
+  
+  let e42 = await driver.$("id=com.easysmartphonecredit.pos:id/snackbar_action");
+  await e42.click();
+
+  let e43 = await driver.$('[text="Active Phone"]');
+  await e43.click();
+  
+  let e44 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_1");
+  await e44.click();
+  
+  let e45 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_2");
+  await e45.click();
+  
+  let e46 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_3");
+  await e46.click();
+  
+  let e47 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_4");
+  await e47.click();
+  
+  let e48 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_done_all");
+  await e48.click();
+  
+  await e42.click();
+  
+  await refreshPage();
 
 
 

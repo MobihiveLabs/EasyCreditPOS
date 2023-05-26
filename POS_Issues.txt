@@ -5,6 +5,7 @@ POS App Issues =>
 4. Bad Request when OTP verifying and still get verified.
 5. After Deleting order from web won't delete in app after restarting order gets deleted.
 6. Order history refreshing takes lot time to show up in app.
+7. When upfront payment is done order activated popup.
 
 
 
