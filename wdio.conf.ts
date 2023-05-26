@@ -55,6 +55,7 @@ exports.config = {
     capabilities: [{
         // capabilities for local Appium web tests on an Android Emulator
         platformName: "Android", // or "iOS"
+        platformVersion : "11",
         deviceName: "Nokia C21 Plus",
         app: 'C:\\Users\\ameay\\OneDrive\\Desktop\\MobiHive\\EasyCreditPOS\\app\\Credithive_pos.apk',
         automationName: "UiAutomator2",
