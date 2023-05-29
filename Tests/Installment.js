@@ -21,6 +21,14 @@ async function runTest() {
       'release'
     ]);
   }
+  async function swipeUp() {
+    await driver.touchAction([
+      { action: 'press', x: 285, y: 1402 },
+      { action: 'moveTo', x: 350, y: 189 },
+      'release'
+    ]);
+
+  }
 
   function generateRandomNumber() {
     let randomNumber = Math.floor(Math.random() * 9000000) + 1000000;
@@ -28,32 +36,39 @@ async function runTest() {
   }
 
   async function paymentReceipt() {
+    let el12 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_make_payment");
+    await el12.waitForDisplayed();
+    el12.click();
+
     let el15 = await driver.$("id=com.easysmartphonecredit.pos:id/id_image_receipt");
     await el15.click();
-    
+
     let el16 = await driver.$("~Tap shutter to take picture");
     await el16.waitForDisplayed();
     await el16.click();
 
     await driver.pause(4000);
     await driver.touchAction([
-        { action: 'press', x: 548, y: 1358 },
-        'release'
-      ]);
+      { action: 'press', x: 548, y: 1358 },
+      'release'
+    ]);
 
     let el17 = await driver.$("id=com.easysmartphonecredit.pos:id/crop_image_menu_crop");
     await el17.waitForDisplayed();
     await el17.click();
-    
+
+
+
     let el18 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_transactionId");
-    await el18.waitForDisplayed({timeout : 20000});
+    await el18.waitForDisplayed({ timeout: 20000 });
     await el18.setValue(generateRandomNumber());
-    
+    await swipeUp();
     let el19 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_submit");
-    await el19.click(); 
+    await el19.waitForDisplayed({ timeout: 7000 });
+    await el19.click();
 
   }
-  
+
   let el3 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_agent_id");
   await el3.setValue("A41");
 
@@ -72,7 +87,7 @@ async function runTest() {
   await el8.click();
 
   let el9 = await driver.$('android=new UiSelector().resourceId("com.easysmartphonecredit.pos:id/id_details_container").index(1)');
-  await el9.waitForDisplayed(4000);
+  await el9.waitForDisplayed();
   el9.click();
 
   await refreshPage();
@@ -84,14 +99,14 @@ async function runTest() {
   await el11.waitForDisplayed();
   el11.click();
 
-  let el12 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_make_payment");
+
+  await paymentReceipt();
+  await paymentReceipt();
+  await paymentReceipt();
+
+  let el12 = await driver.$("com.easysmartphonecredit.pos:id/id_textViewPaymentHistory");
   await el12.waitForDisplayed();
-  el12.click();
-
-  await paymentReceipt();
-  await paymentReceipt();
-  await paymentReceipt();
-
+  await el12.click();
 
 
 

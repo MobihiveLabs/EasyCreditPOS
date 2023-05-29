@@ -1,3 +1,4 @@
+const { log } = require('wd/lib/commands');
 const { remote } = require('webdriverio');
 
 
@@ -41,19 +42,23 @@ async function runTest() {
     randomEmail += '@example.com';
     return randomEmail;
   }
-  
 
   //LoginPage
-  let el3 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_agent_id");
-  await el3.setValue("A41");
+  async function login(){
 
-  let el4 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_password");
-  await el4.setValue("Test@123");
+    let el3 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_agent_id");
+    await el3.setValue("A41");
+    
+    let el4 = await driver.$("id=com.easysmartphonecredit.pos:id/id_edit_password");
+    await el4.setValue("Test@123");
+    
+    let el5 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_login");
+    await el5.click();
+    
+    await driver.pause(5000);
+  }
 
-  let el5 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_login");
-  await el5.click();
-
-  await driver.pause(10000);
+  await login();
 
   let el6 = await driver.$("~Open navigation drawer");
   await el6.click();
@@ -181,7 +186,7 @@ async function runTest() {
   await driver.pause(1000);
 
   let el44 = await driver.$("id=android:id/button1");
-  await el44.waitForDisplayed();
+  await el44.waitForDisplayed({timeout : 10000});
   await el44.click();
  
 
@@ -213,7 +218,7 @@ async function runTest() {
   // await e02.click();
 
   let e03 = await driver.$("~Tap shutter to take picture");
-  await e03.waitForDisplayed();
+  await e03.waitForDisplayed({timeout : 10000});
   await e03.click();
 
   await driver.pause(4000);
@@ -398,21 +403,27 @@ async function runTest() {
   // await e38.click();
 
   let e39 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_checkLock");
+  await e39.waitForDisplayed({timeout : 10000});
   await e39.click();
   
   let e40 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_lock");
+  await e40.waitForDisplayed();
   await e40.click();
   
   let e41 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_unlock");
+  await e41.waitForDisplayed();
   await e41.click();
   
   let e42 = await driver.$("id=com.easysmartphonecredit.pos:id/snackbar_action");
+  await e42.waitForDisplayed();
   await e42.click();
 
   let e43 = await driver.$('[text="Active Phone"]');
+  await e43.waitForDisplayed();
   await e43.click();
   
   let e44 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_1");
+  await e44.waitForDisplayed();
   await e44.click();
   
   let e45 = await driver.$("id=com.easysmartphonecredit.pos:id/id_tick_2");
@@ -425,6 +436,7 @@ async function runTest() {
   await e47.click();
   
   let e48 = await driver.$("id=com.easysmartphonecredit.pos:id/id_button_done_all");
+  await e48.waitForDisplayed();
   await e48.click();
   
   await e42.click();
